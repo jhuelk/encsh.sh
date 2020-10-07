@@ -1,7 +1,7 @@
 #!/bin/bash
 
 CIPHER="aes-128-cbc"
-FLAGS="-salt -pbkdf2"
+FLAGS="-salt -pbkdf2" # remove -pbkdf2 if openssl < 1.1.1
 INT="/bin/bash" # default interpreter
 
 if [ "$#" -lt 1 ]; then
@@ -18,7 +18,7 @@ if [ ! -f "${1}" ]; then
 	exit
 fi
 
-P="`dirname ${0}`"
+P="`dirname ${1}`"
 O="${P}/`basename ${1} .${1##*.}`_enc.sh"
 
 if [ -f "${O}" ]; then
